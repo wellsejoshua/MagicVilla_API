@@ -10,5 +10,10 @@ namespace MagicVilla_VillaAPI.Models.Dto
         public int VillaID { get; set; }
 
         public string SpecialDetails { get; set; }
+
+        //Only Need villa when retrieving Details
+
+        public VillaDTO Villa { get; set; }
+
     }
 }

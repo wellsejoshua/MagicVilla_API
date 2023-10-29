@@ -152,34 +152,34 @@ namespace MagicVilla_VillaAPI.Controllers
 
         }
 
-        [HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdatePartialVilla(int id, JsonPatchDocument<VillaUpdateDTO> patchDTO)
-        {
-            if (patchDTO == null || id == 0)
-            {
-                return BadRequest();
-            }
-            var villa = await _dbVilla.GetAsync(u => u.Id == id, tracked: false);
+        //[HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<IActionResult> UpdatePartialVilla(int id, JsonPatchDocument<VillaUpdateDTO> patchDTO)
+        //{
+        //    if (patchDTO == null || id == 0)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    var villa = await _dbVilla.GetAsync(u => u.Id == id, tracked: false);
 
-            VillaUpdateDTO villaDTO = _mapper.Map<VillaUpdateDTO>(villa);
+        //    VillaUpdateDTO villaDTO = _mapper.Map<VillaUpdateDTO>(villa);
 
-            if (villa == null)
-            {
-                return BadRequest();
-            }
-            patchDTO.ApplyTo(villaDTO, ModelState);
-            Villa model = _mapper.Map<Villa>(villaDTO);
+        //    if (villa == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    patchDTO.ApplyTo(villaDTO, ModelState);
+        //    Villa model = _mapper.Map<Villa>(villaDTO);
 
-            await _dbVilla.UpdateAsync(model);
+        //    await _dbVilla.UpdateAsync(model);
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return NoContent();
-        }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    return NoContent();
+        //}
 
         [HttpDelete("{id:int}", Name = "DeleteVilla")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -201,7 +201,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 await _dbVilla.Remove(villa);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
-                return NoContent();
+                return Ok(_response);
             }
             catch (Exception ex)
             {
