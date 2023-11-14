@@ -12,9 +12,9 @@ namespace MagicVilla_VillaAPI.Models
         [ForeignKey("Complex")]
         public int PropertyId { get; set; }
 
-        public string TenantName { get; set; }
+        public string? TenantName { get; set; }
         public string UnitNumber { get; set; }
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         public string Severity { get; set; }
         public string Description { get; set; }
         public string Room { get; set; }
